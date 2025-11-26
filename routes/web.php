@@ -153,4 +153,6 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 Route::get('/',[App\Http\Controllers\Custom\IndexController::class,'index'])->name('custom.index');
 Route::get('/services',[App\Http\Controllers\Custom\ServiceController::class,'index'])->name('custom.service');
 Route::get('/service-details/{id}',[App\Http\Controllers\Custom\ServiceController::class,'show'])->name('custom.serviceDetail'); 
-Route::get('/contact',[App\Http\Controllers\Custom\ContactController::class, 'index']); 
+
+Route::get('/contact', [App\Http\Controllers\Custom\ContactController::class, 'index'])->name('contact');
+Route::post('/contact-submit', [App\Http\Controllers\Custom\ContactController::class, 'store'])->name('contact.store');

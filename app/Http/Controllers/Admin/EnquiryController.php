@@ -9,7 +9,7 @@ use App\Http\Requests\MassDestroyEnquiryRequest;
 use App\Http\Requests\StoreEnquiryRequest;
 use App\Http\Requests\UpdateEnquiryRequest;
 use App\Models\Enquiry;
-use App\Models\ServiceType;
+use App\Models\ServiceDetail;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;

@@ -39,7 +39,7 @@ class ServiceController extends Controller
 
     return view('custom.service-details', compact('service', 'types'));
 }
-
+  
 
 
 

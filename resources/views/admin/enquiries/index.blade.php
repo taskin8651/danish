@@ -65,7 +65,7 @@
                                 {{ $enquiry->number ?? '' }}
                             </td>
                             <td>
-                                {{ $enquiry->service_type->service_type ?? '' }}
+                                {{ $enquiry->service_type->title ?? '' }}
                             </td>
                             <td>
                                 @can('enquiry_show')
