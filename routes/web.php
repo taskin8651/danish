@@ -156,3 +156,5 @@ Route::get('/service-details/{id}',[App\Http\Controllers\Custom\ServiceControlle
 
 Route::get('/contact', [App\Http\Controllers\Custom\ContactController::class, 'index'])->name('contact');
 Route::post('/contact-submit', [App\Http\Controllers\Custom\ContactController::class, 'store'])->name('contact.store');
+
+Route::get('/gallery',[App\Http\Controllers\Custom\GalleryController::class,'index'])->name('custom.gallery');

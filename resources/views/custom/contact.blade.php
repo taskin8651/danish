@@ -91,26 +91,57 @@
         <div class="contact-us-info-wrappaer section-space--pb_100">
             <div class="container">
                 <div class="row align-items-center">
-                    @if($contact)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="conact-info-wrap mt-30">
-                                <h5 class="heading mb-20">Contact Information</h5>
-                                <ul class="conact-info__list">
-                                    <li>{{ $contact->address ?? 'No address available' }}</li>
-                                    <li><a href="mailto:{{ $contact->email ?? '#' }}" class="hover-style-link text-color-primary">{{ $contact->email ?? 'No email' }}</a></li>
-                                    <li><a href="tel:{{ $contact->number ?? '#' }}" class="hover-style-link text-black font-weight--bold">{{ $contact->number ?? '-' }}</a></li>
-                                    @if(!empty($contact->url))
-                                        <li><a href="{{ $contact->url }}" target="_blank" class="hover-style-link text-color-primary">Website</a></li>
-                                    @endif
-                                    <li>{{ $contact->time ?? '' }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
+                
+    @if($contacts && $contacts->count() > 0)
+        @foreach($contacts->take(3) as $contact)
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="conact-info-wrap mt-30">
+                    <h5 class="heading mb-20">Contact Information</h5>
+                    <ul class="conact-info__list">
+                        <li>{{ $contact->address ?? 'No address available' }}</li>
+                        <li>
+                            <a href="mailto:{{ $contact->email ?? '#' }}" 
+                               class="hover-style-link text-color-primary">
+                               {{ $contact->email ?? 'No email' }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:{{ $contact->number ?? '#' }}" 
+                               class="hover-style-link text-black font-weight--bold">
+                               {{ $contact->number ?? '-' }}
+                            </a>
+                        </li>
+                        <li>{{ $contact->time ?? '' }}</li>
+                    </ul>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <p>No contact information available.</p>
+    @endif
+
                 </div>
             </div>
         </div>
-        <!-- Contact Info Section End -->
+       <!-- Contact Info Section End -->
+<div class="full-wrap-map ">
+    <div class="google-map">
+        @if($contact && $contact->url)
+            <iframe 
+                src="{{ $contact->url }}" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        @else
+            <p class="text-center">Map not available.</p>
+        @endif
+    </div>
+</div>
+
 
         <!-- Call to Action -->
         <div class="cta-image-area_one section-space--ptb_80 cta-bg-image_two">

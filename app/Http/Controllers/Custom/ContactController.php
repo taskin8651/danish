@@ -14,8 +14,9 @@ class ContactController extends Controller
 public function index()
 {
     $contact = ContactDetail::first();
+    $contacts = ContactDetail::all();
     $serviceTypes = ServiceDetail::all(); // Fetch all service types
-    return view('custom.contact', compact('contact', 'serviceTypes'));
+    return view('custom.contact', compact('contact', 'serviceTypes', 'contacts'));
 }
 
 public function store(Request $request)

@@ -1,3 +1,16 @@
+@php 
+use App\Models\Logo;
+use App\models\ContactDetail;
+use App\Models\ServiceDetail;
+use App\models\Link;
+
+$siteSetting = Logo::first();
+$serviceDetails = ServiceDetail::all();
+$contactDetails = ContactDetail::first();
+$links = Link::first();
+
+@endphp
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx" dir="ltr">
 
@@ -60,12 +73,23 @@
                     <div class="col-lg-12">
                         <div class="header position-relative">
                             <!-- brand logo -->
-                            <div class="header__logo">
-                                <a href="index.html">
-                                    <img src="assets/images/logo/light-logo.webp" aria-label="Mitech Logo" width="160" height="48" class="img-fluid light-logo" alt="">
-                                    <img src="assets/images/logo/logo-dark.webp" aria-label="Mitech Logo" width="160" height="48" class="img-fluid dark-logo" alt="">
-                                </a>
-                            </div>
+                           <div class="header__logo">
+    <a href="{{ url('/') }}">
+        <img src="{{ $siteSetting->image_1?->getUrl() ?? 'assets/images/logo/light-logo.webp' }}" 
+             aria-label="Mitech Logo" 
+             width="160" 
+             height="48" 
+             class="img-fluid light-logo" 
+             alt="Light Logo">
+
+        <img src="{{ $siteSetting->image_1?->getUrl() ?? 'assets/images/logo/light-logo.webp' }}" 
+             aria-label="Mitech Logo" 
+             width="160" 
+             height="48" 
+             class="img-fluid dark-logo" 
+             alt="Dark Logo">
+    </a>
+</div>
 
                             <div class="header-right">
                                 <!-- navigation menu -->
@@ -82,30 +106,15 @@
                                               
                                             </li>
                                             <li class="has-children has-children--multilevel-submenu">
-                                                <a href="#"><span>Service</span></a>
+                                                <a href="/service"><span>Service</span></a>
                                                 <ul class="submenu">
+                                                    @foreach($serviceDetails as $serviceDetail)
                                                     <li class="has-children">
-                                                        <a href="about-us-01.html"><span>About us</span></a>
-                                                        <ul class="submenu">
-                                                            <li><a href="about-us-01.html"><span>About us 01</span></a></li>
-                                                            <li><a href="about-us-02.html"><span>About us 02</span></a></li>
-                                                            <li class="has-children">
-                                                                <a href="#"><span>Submenu Level Two</span></a>
-                                                                <ul class="submenu">
-                                                                    <li><a href="#"><span>Submenu Level Three</span></a></li>
-                                                                    <li><a href="#"><span>Submenu Level Three</span></a></li>
-                                                                    <li><a href="#"><span>Submenu Level Three</span></a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="contact-us.html"><span>Contact us</span></a></li>
-                                                    <li><a href="leadership.html"><span>Leadership</span></a></li>
-                                                    <li><a href="why-choose-us.html"><span>Why choose us</span></a></li>
-                                                    <li><a href="our-history.html"><span>Our history</span></a></li>
-                                                    <li><a href="faqs.html"><span>FAQs</span></a></li>
-                                                    <li><a href="careers.html"><span>Careers</span></a></li>
-                                                    <li><a href="pricing-plans.html"><span>Pricing plans</span></a></li>
+                                                        <a href="{{ route('custom.serviceDetail', $serviceDetail->id) }}">
+                                                            <span>{{ $serviceDetail->title }}</span></a>
+                                                        </li>
+                                                    @endforeach
+                                                   
                                                 </ul>
                                             </li>
                                           
@@ -155,53 +164,78 @@
             <div class="footer-area section-space--ptb_80">
                 <div class="container">
                     <div class="row footer-widget-wrapper">
-                        <div class="col-lg-4 col-md-6 col-sm-6 footer-widget">
-                            <div class="footer-widget__logo mb-30">
-                                <img src="assets/images/logo/dark-logo-160x48.webp" width="160" height="48" class="img-fluid" alt="">
-                            </div>
-                            <ul class="footer-widget__list">
-                                <li>58 Howard Street #2 San Francisco, CA 941</li>
-                                <li><a href="mailto:contact@aeroland.com" class="hover-style-link">contact@aeroland.com</a></li>
-                                <li><a href="tel:123344556" class="hover-style-link text-black font-weight--bold">(+68)1221 09876</a></li>
-                                <li><a href="https://hasthemes.com/" class="hover-style-link text-color-primary">www.mitech.xperts.com</a></li>
-                            </ul>
-                        </div>
+                       
+<div class="col-lg-3 col-md-6 col-sm-6 footer-widget">
+    <div class="footer-widget__logo mb-30">
+        <img src="{{ $siteSetting->logo ?? 'https://via.placeholder.com/160x48' }}" 
+             width="160" height="48" class="img-fluid" alt="Logo">
+    </div>
+    @if($contactDetails)
+    <ul class="footer-widget__list">
+        <li>{{ $contactDetails->address ?? 'No address available' }}</li>
+        <li>
+            <a href="mailto:{{ $contactDetails->email ?? '#' }}" class="hover-style-link">
+                {{ $contactDetails->email ?? 'No email' }}
+            </a>
+        </li>
+        <li>
+            <a href="tel:{{ $contactDetails->number ?? '#' }}" class="hover-style-link text-black font-weight--bold">
+                {{ $contactDetails->number ?? '-' }}
+            </a>
+        </li>
+       
+    </ul>
+    @endif
+</div>
                         <div class="col-lg-2 col-md-4 col-sm-6 footer-widget">
-                            <h6 class="footer-widget__title mb-20">IT Services</h6>
+                            <h6 class="footer-widget__title mb-20">Services</h6>
                             <ul class="footer-widget__list">
-                                <li><a href="#" class="hover-style-link">Managed IT</a></li>
-                                <li><a href="#" class="hover-style-link">IT Support</a></li>
-                                <li><a href="#" class="hover-style-link">IT Consultancy</a></li>
-                                <li><a href="#" class="hover-style-link">Cloud Computing</a></li>
-                                <li><a href="#" class="hover-style-link">Cyber Security</a></li>
+                                @foreach($serviceDetails as $serviceDetail)
+                                <li><a href="{{ route('custom.serviceDetail', $serviceDetail->id) }}" class="hover-style-link">{{ $serviceDetail->title }}</a></li>
+                                @endforeach
+                                
                             </ul>
                         </div>
                         <div class="col-lg-2 col-md-4 col-sm-6 footer-widget">
                             <h6 class="footer-widget__title mb-20">Quick links</h6>
                             <ul class="footer-widget__list">
-                                <li><a href="#" class="hover-style-link">Pick up locations</a></li>
-                                <li><a href="#" class="hover-style-link">Terms of Payment</a></li>
-                                <li><a href="#" class="hover-style-link">Privacy Policy</a></li>
-                                <li><a href="#" class="hover-style-link">Where to Find Us</a></li>
+                                <li><a href="/" class="hover-style-link">Home</a></li>
+                                <li><a href="#" class="hover-style-link">About Us</a></li>
+                                <li><a href="/service" class="hover-style-link">Services</a></li>
+                                <li><a href="/gallery" class="hover-style-link">Gallery</a></li>
+                                <li><a href="/contact" class="hover-style-link">Contact Us</a></li>
+                               
                             </ul>
                         </div>
                         <div class="col-lg-2 col-md-4 col-sm-6 footer-widget">
                             <h6 class="footer-widget__title mb-20">Support</h6>
                             <ul class="footer-widget__list">
-                                <li><a href="#" class="hover-style-link">Forum Support</a></li>
-                                <li><a href="#" class="hover-style-link">Help & FAQ</a></li>
-                                <li><a href="#" class="hover-style-link">Contact Us</a></li>
-                                <li><a href="#" class="hover-style-link">Pricing and plans</a></li>
-                                <li><a href="#" class="hover-style-link">Cookies Policy</a></li>
+                                <li><a href="/privacy" class="hover-style-link">Privacy & policy</a></li>
+                                <li><a href="/terms" class="hover-style-link">Terms & conditions</a></li>
+                                
+                                
                             </ul>
                         </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6 footer-widget">
-                            <div class="footer-widget__title section-space--mb_50"></div>
-                            <ul class="footer-widget__list">
-                                <li><a href="#" class="image_btn" aria-label="Google play Button"><img class="img-fluid" src="assets/images/icons/aeroland-button-google-play.webp" alt=""></a></li>
-                                <li><a href="#" class="image_btn" aria-label="App Store Button"><img class="img-fluid" src="assets/images/icons/aeroland-button-app-store.webp" alt=""></a></li>
-                            </ul>
-                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 footer-widget">
+    <div class="footer-widget__title section-space--mb_30">Our Location</div>
+
+    @if($contactDetails && $contactDetails->url)
+        <div class="footer-map">
+            <iframe 
+                src="{{ $contactDetails->url }}" 
+                width="100%" 
+                height="200" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    @else
+        <p>Map not available</p>
+    @endif
+</div>
+
                     </div>
                 </div>
             </div>
@@ -212,30 +246,43 @@
                             <span class="copyright-text">&copy; 2023 Mitech. <a href="https://hasthemes.com/">All Rights Reserved.</a></span>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
-                            <ul class="list ht-social-networks solid-rounded-icon">
+    <ul class="list ht-social-networks solid-rounded-icon">
+        @if($links)
+            @if($links->facebook)
+                <li class="item">
+                    <a href="{{ $links->facebook }}" target="_blank" aria-label="Facebook" class="social-link hint--bounce hint--top hint--primary">
+                        <i class="fab fa-facebook-f link-icon"></i>
+                    </a>
+                </li>
+            @endif
 
-                                <li class="item">
-                                    <a href="https://twitter.com/" target="_blank" aria-label="Twitter" class="social-link hint--bounce hint--top hint--primary">
-                                        <i class="fab fa-twitter link-icon"></i>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="https://facebook.com/" target="_blank" aria-label="Facebook" class="social-link hint--bounce hint--top hint--primary">
-                                        <i class="fab fa-facebook-f link-icon"></i>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram" class="social-link hint--bounce hint--top hint--primary">
-                                        <i class="fab fa-instagram link-icon"></i>
-                                    </a>
-                                </li>
-                                <li class="item">
-                                    <a href="https://linkedin.com/" target="_blank" aria-label="Linkedin" class="social-link hint--bounce hint--top hint--primary">
-                                        <i class="fab fa-linkedin link-icon"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+            @if($links->instragram)
+                <li class="item">
+                    <a href="{{ $links->instragram }}" target="_blank" aria-label="Instagram" class="social-link hint--bounce hint--top hint--primary">
+                        <i class="fab fa-instagram link-icon"></i>
+                    </a>
+                </li>
+            @endif
+
+            @if($links->linkedin)
+                <li class="item">
+                    <a href="{{ $links->linkedin }}" target="_blank" aria-label="Linkedin" class="social-link hint--bounce hint--top hint--primary">
+                        <i class="fab fa-linkedin link-icon"></i>
+                    </a>
+                </li>
+            @endif
+
+            @if($links->youtube)
+                <li class="item">
+                    <a href="{{ $links->youtube }}" target="_blank" aria-label="YouTube" class="social-link hint--bounce hint--top hint--primary">
+                        <i class="fab fa-youtube link-icon"></i>
+                    </a>
+                </li>
+            @endif
+        @endif
+    </ul>
+</div>
+
                     </div>
                 </div>
             </div>
