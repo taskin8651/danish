@@ -2,7 +2,7 @@
 use App\Models\Logo;
 use App\Models\ContactDetail;
 use App\Models\ServiceDetail;
-use App\models\Link;
+use App\Models\Link;
 
 $siteSetting = Logo::first();
 $serviceDetails = ServiceDetail::all();
