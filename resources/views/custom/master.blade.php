@@ -1,6 +1,6 @@
 @php 
 use App\Models\Logo;
-use App\models\ContactDetail;
+use App\Models\ContactDetail;
 use App\Models\ServiceDetail;
 use App\models\Link;
 
