@@ -9,7 +9,7 @@
             <!--============ Machine learning Hero Start ============-->
             <div class="machine-learning-hero machine-learning-hero-bg">
                 <div class="container">
-                    <div class="row align-items-center">
+                     <div class="row align-items-center">
                         <div class="col-lg-8 col-md-7">
                             <div class="machine-learning-hero-text wow move-up">
                                 <h1 class="font-weight--reguler text-white mb-15"><span class="text-color-secondary">Machine Learning</span> <br> Consulting for Trading </h1>
@@ -177,92 +177,48 @@
                             <div class="feature-images__five">
                                 <div class="row">
 
-                                    <div class="col-lg-4 col-md-6 wow move-up">
-                                        <!-- ht-box-icon Start -->
-                                        <div class="ht-box-images style-05">
-                                            <div class="image-box-wrap">
-                                                <div class="box-image">
-                                                    <div class="default-image">
-                                                        <img class="img-fulid" src="assets/images/icons/n-icon-1.webp" alt="">
+                                    @foreach($serviceDetails as $service)
+        <div class="col-lg-4 col-md-6 wow move-up">
+            <div class="ht-box-images style-05">
+                <div class="image-box-wrap">
+                    
+                    <div class="box-image">
+                       
+
+                         <div class="default-image">
+                                                        <img class="img-fulid"
+                                 src="{{ $service->upload_image?->getUrl() ?? 'assets/images/icons/default.webp' }}"
+                                 alt="" style="width: 100px; height: 100px;">
                                                     </div>
                                                     <div class="hover-images">
-                                                        <img class="img-fulid" src="assets/images/icons/n-icon-1-white.webp" alt="">
+                                                       <img class="img-fulid"
+                                 src="{{ $service->upload_image?->getUrl() ?? 'assets/images/icons/default.webp' }}"
+                                 alt="" style="width: 100px; height: 100px;">
                                                     </div>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="heading">Advanced AI</h5>
-                                                    <div class="text">Turn our AI research into your organization’s value with tools like Cloud AutoML, Cloud Natural Language…
-                                                    </div>
-                                                    <div class="box-images-arrow">
-                                                        <a href="#">
-                                                            <span class="button-text">Discover now</span>
-                                                            <i class="fas fa-arrow-right"></i>
-                                                        </a>
+                    </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- ht-box-icon End -->
-                                    </div>
+                    <div class="content">
+                        <h5 class="heading">{{ $service->title }}</h5>
 
-                                    <div class="col-lg-4 col-md-6 wow move-up">
-                                        <!-- ht-box-icon Start -->
-                                        <div class="ht-box-images style-05">
-                                            <div class="image-box-wrap">
-                                                <div class="box-image">
-                                                    <div class="default-image">
-                                                        <img class="img-fulid" src="assets/images/icons/n-icon-2.webp" alt="">
-                                                    </div>
-                                                    <div class="hover-images">
-                                                        <img class="img-fulid" src="assets/images/icons/n-icon-2-white.webp" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="heading">Experts in deployed AI</h5>
-                                                    <div class="text">Our industry-specific AI solutions meet scalable vertical needs; cross-industry solutions like Contact Center AI…
-                                                    </div>
-                                                    <div class="box-images-arrow">
-                                                        <a href="#">
-                                                            <span class="button-text">Discover now</span>
-                                                            <i class="fas fa-arrow-right"></i>
-                                                        </a>
+                        <div class="text">
+                            {{ Str::limit($service->short_description, 120) }}
+                        </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- ht-box-icon End -->
-                                    </div>
+                        <div class="box-images-arrow">
+                            <a href="{{ route('custom.serviceDetail', $service->id) }}" class="btn-text">
+                                <span class="button-text">Discover now</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                                    <div class="col-lg-4 col-md-6 wow move-up">
-                                        <!-- ht-box-icon Start -->
-                                        <div class="ht-box-images style-05">
-                                            <div class="image-box-wrap">
-                                                <div class="box-image">
-                                                    <div class="default-image">
-                                                        <img class="img-fulid" src="assets/images/icons/n-icon-3.webp" alt="">
-                                                    </div>
-                                                    <div class="hover-images">
-                                                        <img class="img-fulid" src="assets/images/icons/n-icon-3-white.webp" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="heading">Responsible AI</h5>
-                                                    <div class="text">From Explainable AI to our Inclusive ML Guide, our AI principles and responsible AI practices provide a foundation for…
-                                                    </div>
-                                                    <div class="box-images-arrow">
-                                                        <a href="#">
-                                                            <span class="button-text">Discover now</span>
-                                                            <i class="fas fa-arrow-right"></i>
-                                                        </a>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- ht-box-icon End -->
-                                    </div>
+
+                                  
                                 </div>
                             </div>
 
@@ -283,7 +239,7 @@
                             </div>
                             <div class="contact-info-two mt-40 text-left">
                                 <div class="contact-us-button mt-20">
-                                    <a href="#" class="btn btn--secondary">Contact us</a>
+                                    <a href="/contact" class="btn btn--secondary">Contact us</a>
                                 </div>
                             </div>
                         </div>
@@ -302,107 +258,58 @@
                                 <h3 class="heading">Our <span class="text-color-primary">experience </span> experts</h3>
                                 <p class="text mt-30">Mitech specializes in technological and IT-related services such as product engineering, warranty management, building cloud, infrastructure, network, etc. </p>
 
-                                <div class="sider-title-button-box mt-30">
+                                <!-- <div class="sider-title-button-box mt-30">
                                     <a href="#" class="ht-btn ht-btn-md">Join us now</a>
                                     <a href="#" class="btn-text font-weight--bold small-mt__20">View all team <i class="ml-1 button-icon fas fa-arrow-right"></i></a>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
                         <div class="col-lg-8 ht-team-member-style-one">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 wow move-up">
-                                    <div class="grid-item">
-                                        <div class="ht-team-member">
-                                            <div class="team-image">
-                                                <img class="img-fluid" src="assets/images/team/team-member-01-370x250.webp" alt="">
-                                                <div class="social-networks">
-                                                    <div class="inner">
-                                                        <a target="_blank" href="#" class=" hint--bounce  hint--top hint--theme-two" aria-label="Facebook"><i class="fab fa-facebook"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Twitter"><i class="fab fa-twitter"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Instagram"><i class="fab fa-instagram"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="team-info ">
-                                                <h5 class="name">Dollie Horton </h5>
-                                                <div class="position">Marketing</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 wow move-up">
-                                    <div class="grid-item">
-                                        <div class="ht-team-member">
-                                            <div class="team-image">
-                                                <img class="img-fluid" src="assets/images/team/team-member-07-370x250.webp" alt="">
-                                                <div class="social-networks">
-                                                    <div class="inner">
-                                                        <a target="_blank" href="#" class=" hint--bounce  hint--top hint--theme-two" aria-label="Facebook"><i class="fab fa-facebook"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Twitter"><i class="fab fa-twitter"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Instagram"><i class="fab fa-instagram"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="team-info ">
-                                                <h5 class="name">Stephen Mearsley </h5>
-                                                <div class="position">President & CEO</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 wow move-up">
-                                    <div class="grid-item">
-                                        <div class="ht-team-member">
-                                            <div class="team-image">
-                                                <img class="img-fluid" src="assets/images/team/team-member-04-370x250.webp" alt="">
-                                                <div class="social-networks">
-                                                    <div class="inner">
-                                                        <a target="_blank" href="#" class=" hint--bounce  hint--top hint--theme-two" aria-label="Facebook"><i class="fab fa-facebook"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Twitter"><i class="fab fa-twitter"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Instagram"><i class="fab fa-instagram"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="team-info ">
-                                                <h5 class="name">Maggie Strickland </h5>
-                                                <div class="position">Financial Services</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 wow move-up">
-                                    <div class="grid-item">
-                                        <div class="ht-team-member">
-                                            <div class="team-image">
-                                                <img class="img-fluid" src="assets/images/team/team-member-02-370x250.webp" alt="">
-                                                <div class="social-networks">
-                                                    <div class="inner">
-                                                        <a target="_blank" href="#" class=" hint--bounce  hint--top hint--theme-two" aria-label="Facebook"><i class="fab fa-facebook"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Twitter"><i class="fab fa-twitter"></i>
-                                                        </a>
-                                                        <a target="_blank" href="#" class=" hint--bounce hint--top hint--theme-two" aria-label="Instagram"><i class="fab fa-instagram"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="team-info ">
-                                                <h5 class="name">Monica Blews</h5>
-                                                <div class="position">Project manager</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @foreach($teams as $team)
+        <div class="col-lg-6 col-md-6 wow move-up">
+            <div class="grid-item">
+                <div class="ht-team-member">
+
+                    <div class="team-image">
+                        <img class="img-fluid"
+                             src="{{ $team->upload_file?->url ?? 'assets/images/team/default.webp' }}"
+                             alt="{{ $team->title }}">
+
+                        <div class="social-networks">
+                            <div class="inner">
+                                @if($team->facebook)
+                                    <a target="_blank" href="{{ $team->facebook }}" aria-label="Facebook">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                @endif
+
+                                @if($team->linkedin)
+                                    <a target="_blank" href="{{ $team->linkedin }}" aria-label="LinkedIn">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                @endif
+
+                                @if($team->instagram)
+                                    <a target="_blank" href="{{ $team->instagram }}" aria-label="Instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-info">
+                        <h5 class="name">{{ $team->title }}</h5>
+                        <div class="position">{{ $team->degination }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @endforeach
+                               
 
                             </div>
                         </div>
@@ -430,93 +337,55 @@
                         <div class="col-12">
                             <div class="projects-wrap swiper-container projects-slider__container">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <!-- Projects Wrap Start -->
-                                        <a href="#" class="projects-wrap style-01 wow move-up">
-                                            <div class="projects-image-box">
-                                                <div class="projects-image">
-                                                    <img class="img-fluid" src="assets/images/projects/case-study-01-480x298.webp" alt="">
-                                                </div>
-                                                <div class="content">
-                                                    <h6 class="heading">Aeroland-Smart Vision</h6>
-                                                    <div class="post-categories">Cyber Security</div>
-                                                    <div class="text">At Mitech, we have a holistic and integrated approach towards core modernization to experience technological evolution.
-                                                    </div>
-                                                    <div class="box-projects-arrow">
-                                                        <span class="button-text">View case study</span>
-                                                        <i class="fas fa-arrow-right ml-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Projects Wrap End -->
-                                    </div>
+                                    @foreach($projects as $project)
+    <div class="swiper-slide">
+        <a href="#" class="projects-wrap style-01 wow move-up">
+            <div class="projects-image-box">
 
-                                    <div class="swiper-slide">
-                                        <!-- Projects Wrap Start -->
-                                        <a href="#" class="projects-wrap style-01 wow move-up">
-                                            <div class="projects-image-box">
-                                                <div class="projects-image">
-                                                    <img class="img-fluid" src="assets/images/projects/case-study-02-480x298.webp" alt="">
-                                                </div>
-                                                <div class="content">
-                                                    <h6 class="heading">Arden-Internal Networking</h6>
-                                                    <div class="post-categories">Cyber Security</div>
-                                                    <div class="text">The prospects for a company operating in this new market are varied and exciting. The potential …
-                                                    </div>
-                                                    <div class="box-projects-arrow">
-                                                        <span class="button-text">View case study</span>
-                                                        <i class="fas fa-arrow-right ml-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Projects Wrap End -->
-                                    </div>
+                <div class="projects-image">
 
-                                    <div class="swiper-slide">
-                                        <!-- Projects Wrap Start -->
-                                        <a href="#" class="projects-wrap style-01 wow move-up">
-                                            <div class="projects-image-box">
-                                                <div class="projects-image">
-                                                    <img class="img-fluid" src="assets/images/projects/case-study-03-480x298.webp" alt="">
-                                                </div>
-                                                <div class="content">
-                                                    <h6 class="heading">A Freeserve case study</h6>
-                                                    <div class="post-categories">Cyber Security</div>
-                                                    <div class="text">The prospects for a company operating in this new market are varied and exciting. The potential …
-                                                    </div>
-                                                    <div class="box-projects-arrow">
-                                                        <span class="button-text">View case study</span>
-                                                        <i class="fas fa-arrow-right ml-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Projects Wrap End -->
-                                    </div>
+                    {{-- IMAGE --}}
+                   @if($project->upload_file && $project->upload_file->getUrl())
+    <img class="img-fluid"
+         src="{{ $project->upload_file->getUrl() }}"
+         alt="{{ $project->title }}">
+@endif
 
-                                    <div class="swiper-slide">
-                                        <!-- Projects Wrap Start -->
-                                        <a href="#" class="projects-wrap style-01 wow move-up">
-                                            <div class="projects-image-box">
-                                                <div class="projects-image">
-                                                    <img class="img-fluid" src="assets/images/projects/case-study-04-480x298.webp" alt="">
-                                                </div>
-                                                <div class="content">
-                                                    <h6 class="heading">Aqua – Research and Energy</h6>
-                                                    <div class="post-categories">Cyber Security</div>
-                                                    <div class="text">The prospects for a company operating in this new market are varied and exciting. The potential …
-                                                    </div>
-                                                    <div class="box-projects-arrow">
-                                                        <span class="button-text">View case study</span>
-                                                        <i class="fas fa-arrow-right ml-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Projects Wrap End -->
-                                    </div>
+
+                    {{-- VIDEO --}}
+                    @if($project->upload_file && Str::endsWith($project->upload_file->file_name, ['mp4','mov','avi','webm']))
+                        <video class="img-fluid" autoplay muted loop>
+                            <source src="{{ $project->upload_file->url }}">
+                        </video>
+                    @endif
+
+                </div>
+
+                <div class="content">
+                    <h6 class="heading">{{ $project->title }}</h6>
+
+                    <div class="post-categories">
+                        {{ $project->service_type->service_type ?? '' }}
+                    </div>
+
+                    <div class="text">
+                        {{ Str::limit($project->description, 120) }}
+                    </div>
+
+                    <div class="box-projects-arrow">
+                        <span class="button-text">View case study</span>
+                        <i class="fas fa-arrow-right ml-1"></i>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+@endforeach
+
+
+
+                                 
 
                                 </div>
                                 <div class="swiper-pagination swiper-pagination-project mt_20"></div>
@@ -531,7 +400,7 @@
             <!--===========  Projects wrapper End =============-->
 
             <!--=========== Testimonials Area Start =============-->
-            <div class="testimonials-area infotechno-contact-us-bg">
+            <!-- <div class="testimonials-area infotechno-contact-us-bg">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -581,7 +450,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!--=========== Testimonials Area End =============-->
 
             <!--============ Contact Us Area Start =================-->
@@ -605,7 +474,7 @@
                                 </div>
 
                                 <div class="contact-list-item">
-                                    <a href="tel:190068668" class="single-contact-list">
+                                    <a href="tel:{{ $contactDetails->number ?? '#' }}" class="single-contact-list">
                                         <div class="content-wrap">
                                             <div class="content">
                                                 <div class="icon">
@@ -613,12 +482,12 @@
                                                 </div>
                                                 <div class="main-content">
                                                     <h6 class="heading">Call for advice now!</h6>
-                                                    <div class="text">1900 68668</div>
+                                                    <div class="text">{{ $contactDetails->number ?? '#' }}</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="mailto:hello@mitech.com" class="single-contact-list">
+                                    <a href="mailto:{{$contactDetails->email ?? ' -'}}" class="single-contact-list">
                                         <div class="content-wrap">
                                             <div class="content">
                                                 <div class="icon">
@@ -626,7 +495,7 @@
                                                 </div>
                                                 <div class="main-content">
                                                     <h6 class="heading">Say hello</h6>
-                                                    <div class="text">hello@mitech.com</div>
+                                                    <div class="text">{{$contactDetails->email ?? ' -'}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -644,40 +513,53 @@
                                 </div>
 
                                 <!-- <form class="contact-form" id="contact-form-2" action="https://whizthemes.com/mail-php/jowel/mitech/php/services-mail.php" method="post"> -->
-                                <form class="contact-form" id="contact-form-2" action="https://htmldemo.net/mitech/assets/php/services-mail.php" method="post">
-                                    <div class="contact-form__two">
-                                        <div class="contact-input">
-                                            <div class="contact-inner">
-                                                <input name="con_name" type="text" placeholder="Name *">
-                                            </div>
-                                            <div class="contact-inner">
-                                                <input name="con_email" type="email" placeholder="Email *">
-                                            </div>
-                                        </div>
-                                        <div class="contact-select">
-                                            <div class="form-item contact-inner">
-                                                <span class="inquiry">
-                                    <select id="Visiting" name="Visiting">
-                                        <option disabled selected>Select Department to email</option>
-                                        <option value="Your inquiry about">Your inquiry about</option>
-                                        <option value="General Information Request">General Information Request</option>
-                                        <option value="Partner Relations">Partner Relations</option>
-                                        <option value="Careers">Careers</option>
-                                        <option value="Software Licencing">Software Licencing</option>
-                                    </select>
+                               <form class="contact-form" id="contact-form-2" action="{{ route('contact.store') }}" method="POST">
+    @csrf
 
-                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="contact-inner contact-message">
-                                            <textarea name="con_message" placeholder="Please describe what you need."></textarea>
-                                        </div>
-                                        <div class="comment-submit-btn">
-                                            <button class="ht-btn ht-btn-md" type="submit">Send message</button>
-                                            <p class="form-messege-2"></p>
-                                        </div>
-                                    </div>
-                                </form>
+    <div class="contact-form__two">
+
+        <div class="contact-input">
+            <div class="contact-inner">
+                <input name="name" type="text" placeholder="Name *" required>
+            </div>
+
+            <div class="contact-inner">
+                <input name="email" type="email" placeholder="Email *" required>
+            </div>
+        </div>
+
+        <div class="contact-inner">
+            <input name="number" type="text" placeholder="Phone *" required>
+        </div>
+
+        <div class="contact-select">
+            <div class="form-item contact-inner">
+                <span class="inquiry">
+                    <select name="service_type_id" required>
+                        <option disabled selected>Select Service Type *</option>
+                        @foreach($serviceTypes as $type)
+                            <option value="{{ $type->id }}">{{ $type->service_type }}</option>
+                        @endforeach
+                    </select>
+                </span>
+            </div>
+        </div>
+
+        <div class="contact-inner contact-message">
+            <textarea name="message" placeholder="Please describe what you need." required></textarea>
+        </div>
+
+        <div class="comment-submit-btn">
+            <button class="ht-btn ht-btn-md" type="submit">Send message</button>
+
+            @if(session('success'))
+                <p class="text-success mt-2">{{ session('success') }}</p>
+            @endif
+        </div>
+
+    </div>
+</form>
+
                             </div>
                         </div>
 
@@ -694,96 +576,21 @@
                             <div class="brand-logo-slider__container-area">
                                 <div class="swiper-container brand-logo-slider__container">
                                     <div class="swiper-wrapper brand-logo-slider__one">
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-01.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-01-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-02.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-02-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-03.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-03-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-04.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-04-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-05.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-05-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-06.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-06-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-07.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-07-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-08.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-08-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide brand-logo brand-logo--slider">
-                                            <a href="#">
-                                                <div class="brand-logo__image">
-                                                    <img src="assets/images/brand/mitech-client-logo-09.webp" class="img-fluid" alt="">
-                                                </div>
-                                                <div class="brand-logo__image-hover">
-                                                    <img src="assets/images/brand/mitech-client-logo-09-hover.webp" class="img-fluid" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
+                                       @foreach($brands as $brand)
+    <div class="swiper-slide brand-logo brand-logo--slider">
+        <a href="#">
+            <div class="brand-logo__image">
+                <img src="{{ $brand->logo?->url }}" class="img-fluid" alt="{{ $brand->title }}">
+            </div>
+
+            <div class="brand-logo__image-hover">
+                <img src="{{ $brand->logo?->url }}" class="img-fluid" alt="{{ $brand->title }}">
+            </div>
+        </a>
+    </div>
+@endforeach
+
+                                    
                                     </div>
                                 </div>
                             </div>
