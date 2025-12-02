@@ -169,8 +169,8 @@ $links = Link::first();
                        
 <div class="col-lg-3 col-md-6 col-sm-6 footer-widget">
     <div class="footer-widget__logo mb-30">
-        <img src="{{ $siteSetting->logo ?? 'https://via.placeholder.com/160x48' }}" 
-             width="160" height="48" class="img-fluid" alt="Logo">
+        <img src="{{ $siteSetting->image_1?->getUrl() ?? 'https://via.placeholder.com/160x48' }}" 
+             width="160" height="48" class="img-fluid" alt="{{ $siteSetting->name ?? 'Logo' }}  ">
     </div>
     @if($contactDetails)
     <ul class="footer-widget__list">
