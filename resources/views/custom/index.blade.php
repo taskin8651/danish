@@ -177,45 +177,48 @@
                             <div class="feature-images__five">
                                 <div class="row">
 
-                                    @foreach($serviceDetails as $service)
-        <div class="col-lg-4 col-md-6 wow move-up">
-            <div class="ht-box-images style-05">
-                <div class="image-box-wrap">
-                    
-                    <div class="box-image">
-                       
+                                  @foreach($serviceDetails as $service)
+<div class="col-lg-4 col-md-6 mt-30">
+    <!-- Box large image wrap Start -->
+    <a href="{{ route('custom.serviceDetail', $service->id) }}" class="box-large-image__wrap wow move-up">
+        <div class="box-large-image__box">
 
-                         <div class="default-image">
-                                                        <img class="img-fulid"
-                                 src="{{ $service->upload_image?->getUrl() ?? 'assets/images/icons/default.webp' }}"
-                                 alt="" style="width: 100px; height: 100px;">
-                                                    </div>
-                                                    <div class="hover-images">
-                                                       <img class="img-fulid"
-                                 src="{{ $service->upload_image?->getUrl() ?? 'assets/images/icons/default.webp' }}"
-                                 alt="" style="width: 100px; height: 100px;">
-                                                    </div>
+            <div class="box-large-image__midea">
+                <div class="images-midea">
+
+                    <!-- Main Image -->
+                    <img 
+                        src="{{ $service->upload_image?->getUrl() ?? 'assets/images/icons/default.webp' }}" 
+                        class="img-fluid" 
+                        alt=""
+                        style="width:330px; height:330px; object-fit:cover;"
+                    >
+
+                    <!-- Button -->
+                    <div class="button-wrapper">
+                        <div class="btn tm-button">
+                            <span class="button-text">Learn more</span>
+                        </div>
                     </div>
 
-                    <div class="content">
+                    <!-- Title on image -->
+                    <div class="heading-wrap">
                         <h5 class="heading">{{ $service->title }}</h5>
-
-                        <div class="text">
-                            {{ Str::limit($service->short_description, 120) }}
-                        </div>
-
-                        <div class="box-images-arrow">
-                            <a href="{{ route('custom.serviceDetail', $service->id) }}" class="btn-text">
-                                <span class="button-text">Discover now</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
                     </div>
 
                 </div>
             </div>
+
+            <div class="box-large-image__content mt-30 text-center">
+                <p>{{ Str::limit($service->short_description, 120) }}</p>
+            </div>
+
         </div>
-    @endforeach
+    </a>
+    <!-- Box large image wrap End -->
+</div>
+@endforeach
+
 
 
                                   
