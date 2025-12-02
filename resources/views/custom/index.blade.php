@@ -461,52 +461,75 @@
                 <div class="container">
                     <div class="row align-items-center">
 
-                        <div class="col-lg-4">
-                            <div class="contact-info sytle-one service-contact text-left">
+                    <div class="col-lg-4">
+    <div class="contact-info sytle-one service-contact text-center p-4" 
+         style="background:#ffffff; border-radius:15px; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
 
-                                <div class="contact-info-title-wrap text-center">
-                                    <h3 class="heading text-white mb-10">4.9/5.0</h3>
-                                    <div class="ht-star-rating lg-style">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <p class="sub-text">by 700+ customers for 3200+ clients</p>
-                                </div>
+        <!-- Rating Section -->
+        <div class="contact-info-title-wrap mb-4">
+            <h3 class="heading mb-2" style="font-size:36px; font-weight:700; color:#333;">
+                4.9/5.0
+            </h3>
 
-                                <div class="contact-list-item">
-                                    <a href="tel:{{ $contactDetails->number ?? '#' }}" class="single-contact-list">
-                                        <div class="content-wrap">
-                                            <div class="content">
-                                                <div class="icon">
-                                                    <span class="fas fa-phone"></span>
-                                                </div>
-                                                <div class="main-content">
-                                                    <h6 class="heading">Call for advice now!</h6>
-                                                    <div class="text">{{ $contactDetails->number ?? '#' }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="mailto:{{$contactDetails->email ?? ' -'}}" class="single-contact-list">
-                                        <div class="content-wrap">
-                                            <div class="content">
-                                                <div class="icon">
-                                                    <span class="far fa-envelope"></span>
-                                                </div>
-                                                <div class="main-content">
-                                                    <h6 class="heading">Say hello</h6>
-                                                    <div class="text">{{$contactDetails->email ?? ' -'}}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+            <div class="ht-star-rating lg-style mb-2" style="font-size:20px; color:#ffc107;">
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </div>
 
-                            </div>
-                        </div>
+            <p class="sub-text" style="color:#666; font-size:15px;">
+                by 700+ customers for 3200+ clients
+            </p>
+        </div>
+
+        <!-- Contact Items -->
+        <div class="contact-list-item mt-4">
+
+            <!-- Phone -->
+            <a href="tel:{{ $contactDetails->number ?? '#' }}" 
+               class="single-contact-list d-flex align-items-center justify-content-center mb-3"
+               style="background:#f7f7f7; padding:15px 20px; border-radius:12px; color:#333; border:1px solid #eee; transition:0.3s;">
+
+                <div class="icon me-3" style="font-size:22px; color:#0d6efd;">
+                    <span class="fas fa-phone"></span>
+                </div>
+
+                <div class="main-content text-start">
+                    <h6 class="heading mb-1" style="font-weight:600; font-size:16px;">
+                        Call for advice now!
+                    </h6>
+                    <div class="text" style="font-size:15px; color:#555;">
+                        {{ $contactDetails->number ?? '#' }}
+                    </div>
+                </div>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:{{$contactDetails->email ?? '-'}}"
+               class="single-contact-list d-flex align-items-center justify-content-center"
+               style="background:#f7f7f7; padding:15px 20px; border-radius:12px; color:#333; border:1px solid #eee; transition:0.3s;">
+
+                <div class="icon me-3" style="font-size:22px; color:#0d6efd;">
+                    <span class="far fa-envelope"></span>
+                </div>
+
+                <div class="main-content text-start">
+                    <h6 class="heading mb-1" style="font-weight:600; font-size:16px;">
+                        Say hello
+                    </h6>
+                    <div class="text" style="font-size:15px; color:#555;">
+                        {{$contactDetails->email ?? '-'}}
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
 
                         <div class="col-lg-7 ms-auto">
                             <div class="contact-form-service-wrap">
